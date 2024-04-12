@@ -6,8 +6,34 @@ export const useCalculator = () =>{
     //hooks
     const [number, setNumber] = useState('0');
 
+    const clean = () =>{
+        setNumber('0');
+    };
+
+    const deleteOperation = () =>{
+        let currenSign = '';
+        let temporalnumber = number;
+
+        if(number.includes('-')){
+            currenSign = '-';
+            temporalnumber = number.substring(1);
+        }
+        if(temporalnumber.length>1){
+            return setNumber(currenSign + temporalnumber.slice(0, -1))
+        }
+        setNumber('0');
+    }
+
+    const togglesign = () =>{
+        if (number.includes('-')){
+            return setNumber(number.replace('-',''));
+        }
+        setNumber('-' + number);
+    };
+
 
     const buildNumber = (numberString : string) =>{
+
     if (number.includes('.')&& numberString === '.'){
        return; 
     } 
@@ -39,6 +65,10 @@ export const useCalculator = () =>{
 
     return{
         number,
+
         buildNumber,
+        togglesign,
+        clean,
+        deleteOperation,
     };
 };

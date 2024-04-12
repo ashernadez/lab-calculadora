@@ -144,7 +144,7 @@ export const useCalculator = () =>{
                 return num1 / num2;
 
             default:
-                throw new Error( 'Invalid Operation' );
+                //throw new Error( 'Invalid Operation' );
         }
     }
 
